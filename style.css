@@ -6,13 +6,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-:root {
+ :root {
     font-size: 62.5%;
-    --color-base-white: #F5F5F5;
-    --color-base-gray-100: #FFFFFF;
-    --color-base-gray-500: #3D3D3D;
-    --colo-base-gray-300: #8d8d99;
-    --color-base-gray-900: #202024;
+    --hue: 200;
+    --color-base-white: hsl(0, 0%, 96%);
+    --color-base-gray-100: hsl(0, 0%, 100%);
+    --color-base-gray-500: hsl(0, 0%, 24%);
+    --colo-base-gray-300: hsl(var(--hue), 60%, 51%);
+    --color-base-gray-900: hsl(var(--hue), 80%, 13%);
 }
 
 body {
@@ -128,6 +129,7 @@ main h1 {
     transition-delay: 0s;
     transition-timing-function: ease-out;
     /* transition: all 200ns ease-out*/
+    display: block;
 }
 
 .item img:hover {
@@ -165,4 +167,38 @@ footer {
     text-align: center;
     padding: 1.6rem;
     font-weight: 600;
+}
+
+
+/* animation */
+
+header {
+    --startY: -100%;
+    animation: move .2s;
+}
+
+footer {
+    --startY: 100%;
+    animation: move.2s;
+}
+
+@keyframes move {
+    from {
+        transform: translateY(var(--startY));
+    }
+}
+
+.item {
+    animation: appear .4s var(--delay) backwards;
+    --delay: 1s
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+    50% {
+        transform: scale(1.2);
+    }
 }
